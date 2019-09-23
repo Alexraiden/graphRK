@@ -1,6 +1,7 @@
-const { injectBabelPlugin } = require('react-app-rewired');
+const { override, addBabelPlugin } = require("customize-cra");
 
-module.exports = function override(config, env) {
-  config = injectBabelPlugin('relay', config);
-  return config;
-}
+module.exports = override(
+    addBabelPlugin(
+        ["babel-plugin-import-graphql", {nodePath: process.env.NODE_PATH}]
+    )
+);
